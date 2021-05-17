@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import  { useContext } from 'react';
 import './App.css';
+import {observer} from 'mobx-react-lite'
+import {Context} from './globalstore/index';
+import { Button } from 'antd';
 
 function App() {
+  const store = useContext(Context);
+  console.log(store)
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          Edit <code>src/App.tsx</code> and  to .
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+     {store.theme}
+     <Button onClick={()=>{
+         store.init()
+       console.log('liumm')
+       console.log(store,'store');
+     }} loading={store.loadings.init}>点我1</Button>
       </header>
     </div>
   );
 }
 
-export default App;
+export default observer(App);

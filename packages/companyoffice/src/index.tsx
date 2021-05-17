@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.less';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import config from './config/index';
+import {Context, GlobalStore} from './globalstore/index'
+config();
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Context.Provider value={new GlobalStore()}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Context.Provider>,
   document.getElementById('root')
 );
 
