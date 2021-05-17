@@ -45,28 +45,14 @@ interface axiosProps {
   mockResponseData?: any;
 }
 function mockData({ mockResponseData, method, url, data, options }:any) {
-  return axios({
-    method,
-    url,
-    data,
-    adapter: (opts: AxiosRequestOptions) => {
-      let responseData = mockResponseData;
-      if (typeof mockResponseData === 'function') {
-        responseData = mockResponseData(data, opts);
-      }
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve({
-            data: responseData,
-            status: 200,
-            statusText: 'ok',
-            config: opts,
-            headers: opts.headers,
-          });
-        }, opts.delay || 300);
-      });
-    },
-    ...options,
+  let responseData = mockResponseData;
+  if (typeof mockResponseData === "function") {
+    responseData = mockResponseData(data);
+  }
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(responseData);
+    }, 1000);
   });
 }
 async function myAxios<T>({
@@ -77,7 +63,7 @@ async function myAxios<T>({
   mockResponseData,
 }: axiosProps): Promise<T> {
   let res: unknown;
-  if (isObjectLike(mockResponseData)) {
+  if (mockResponseData) {
     res = mockData({ mockResponseData, url, method, data, options });
   } else {
     let config = {};

@@ -1,5 +1,6 @@
 import {observable,makeObservable, runInAction} from 'mobx'
 import { createContext,useContext } from 'react'
+import service from '../service'
 import { loading } from '../utils'
 
 export class GlobalStore {
@@ -13,16 +14,9 @@ export class GlobalStore {
   }
   @loading
   async init(){
-    await new Promise((res)=>{
-      setTimeout(() => {
-        runInAction(()=>{
-          this.theme ='ll'
-        })
-        res({})
-      }, 2000);
-    })
+    const res =  await service.login();
+    console.log(res);
   }
-
 }
 export const Context = createContext<GlobalStore>({} as GlobalStore);
 export const useStore = () => useContext(Context);
