@@ -1,0 +1,23 @@
+{
+  "name": "xunhuo-components",
+  "version": "1.0.0",
+  "description": "寻伙（安徽)前端公共组件库",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liumemgmei/xunhuo-components.git"
+  },
+  "keywords": [
+    "react",
+    "公共组件库"
+  ],
+  "author": "liumemgmei <18768147259@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liumemgmei/xunhuo-components/issues"
+  },
+  "homepage": "https://github.com/liumemgmei/xunhuo-components#readme"
+}
